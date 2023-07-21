@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joke Generator</title>
+  <style>
+    body {
+      background-color: #f7ecdf;
+      transition: background-color 0.5s ease;
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      opacity: 0;
+      animation: fadeIn 1s ease-in-out forwards;
+      overflow: hidden;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .container {
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+      transform: translateY(-20px);
+      animation: slideIn 1s ease-in-out forwards;
+    }
+
+    @keyframes slideIn {
+      0% {
+        transform: translateY(-20px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .joke {
+      margin-bottom: 20px;
+    }
+
+    button {
+      background-color: #4caf50;
+      border: none;
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      opacity: 0;
+      animation: fadeInButton 1s ease-in-out forwards;
+    }
+
+    @keyframes fadeInButton {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .submit-joke {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .submit-joke a {
+      color: #666;
+      text-decoration: none;
+    }
+
+    .dark-mode {
+      background-color: #4d4c4c;
+    }
+
+    .switch-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .switch-label {
+      font-size: 20px;
+      margin-right: 5px;
+      color: #4caf50;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      height: 20px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+      border-radius: 20px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 2px;
+      bottom: 2px;
+      background-color: #fff;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #4caf50;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(20px);
+    }
+
+    .emoji {
+      font-size: 16px;
+      vertical-align: middle;
+    }
+
+    .copyright {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #666;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        max-width: 300px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      button {
+        font-size: 14px;
+      }
+
+      .submit-joke {
+        font-size: 12px;
+      }
+
+      .switch-label {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>comedy.eu.org - The Simple Joke Generator</h1>
+    <div class="joke" id="jokeContainer">
+      <!-- The generated joke will appear here -->
+    </div>
+    <button onclick="generateJoke()">Generate Joke</button>
+    <div class="submit-joke">
+      <a href="https://forms.gle/r84iJv9Fn772WuFF9" target="_blank">Submit Your Joke</a>
+    </div>
+    <div class="switch-container">
+      <span class="switch-label">☀️</span>
+      <label class="switch">
+        <input type="checkbox" onclick="toggleDarkMode()">
+        <span class="slider"></span>
+      </label>
+      <span class="switch-label">🌙</span>
+    </div>
+    <div class="copyright">
+      &copy; 2023 comedy.eu.org - All rights reserved.
+    </div>
+
+    <script>
+      function generateJoke() {
+        var jokes = [
+          "Why don't scientists trust atoms? Because they make up everything!",
+          "Did you hear about the mathematician who's afraid of negative numbers? He will stop at nothing to avoid them!",
+          "Why was the math book sad? Because it had too many problems!",
+          "What did the left eye say to the right eye? Between you and me, something smells!",
+          "Why did the scarecrow win an award? Because he was outstanding in his field!",
+          "What did one wall say to the other wall? I'll meet you at the corner!",
+          "Why did the bicycle fall over? It was two-tired!",
+          "What did the grape say when it got stepped on? Nothing, it just let out a little wine!",
+          "What's orange and sounds like a parrot? A carrot!",
+          "Why did the tomato turn red? Because it saw the salad dressing!",
+          // Add more jokes here...
+          "Why don't scientists trust atoms? Because they make up everything!",
+          "Did you hear about the mathematician who's afraid of negative numbers? He will stop at nothing to avoid them!",
+          "Why was the math book sad? Because it had too many problems!",
+          "What did the left eye say to the right eye? Between you and me, something smells!",
+          "Why did the scarecrow win an award? Because he was outstanding in his field!",
+          "What did one wall say to the other wall? I'll meet you at the corner!",
+          "Why did the bicycle fall over? It was two-tired!",
+          "What did the grape say when it got stepped on? Nothing, it just let out a little wine!",
+          "What's orange and sounds like a parrot? A carrot!",
+          "Why did the tomato turn red? Because it saw the salad dressing!",
+          "What do you call a bear with no teeth? A gummy bear!",
+          "Why don't eggs tell jokes? They might crack up!",
+          "Why don't scientists trust atoms? Because they make up everything!",
+          "Why don't skeletons fight each other? They don't have the guts!",
+          "Why did the scarecrow win an award? Because he was outstanding in his field!",
+          "What did one hat say to the other hat? You stay here, I'll go on ahead!",
+          "How does a train eat? It goes chew, chew!",
+          "Why was the math book sad? Because it had too many problems!",
+          "What did the left eye say to the right eye? Between you and me, something smells!",
+          // Add more jokes here
+          "Why did the math book look sad? Because it had too many problems!",
+          "Why don't eggs tell jokes? Because they might crack up!",
+          "Why did the bicycle fall over? It was two-tired!",
+          "What do you call a bear with no teeth? A gummy bear!",
+          "What do you call fake spaghetti? An impasta!",
+          "Why did the tomato turn red? Because it saw the salad dressing!",
+          "Why don't skeletons fight each other? They don't have the guts!",
+          "How do you organize a space party? You planet!",
+          "What do you call a fake noodle? An impasta!",
+          "Why couldn't the bicycle find its way home? It lost its bearings!",
+          "Why did the golfer bring two pairs of pants? In case he got a hole in one!",
+          "Why did the scarecrow win an award? Because he was outstanding in his field!",
+          "What do you call a bear with no teeth? A gummy bear!",
+          "How does a penguin build its house? Igloos it together!",
+          "Why don't you ever see elephants hiding in trees? Because they're so good at it!",
+          "Why did the tomato turn red? Because it saw the salad dressing!",
+          "How do you make a tissue dance? You put a little boogie in it!",
+          "Why did the bicycle fall over? It was two-tired!",
+          "What do you get if you cross a snowman and a vampire? Frostbite!",
+          "What do you call a bear with no teeth? A gummy bear!",
+          "Why don't scientists trust atoms? Because they make up everything!",
+          "Why did the scarecrow win an award? Because he was outstanding in his field!",
+          "What's brown and sticky? A stick!",
+          "Why don't skeletons fight each other? They don't have the guts!",
+          "What did one hat say to the other hat? You stay here, I'll go on ahead!",
+          "How does a train eat? It goes chew, chew!",
+          "Why was the math book sad? Because it had too many problems!",
+          "What did the left eye say to the right eye? Between you and me, something smells!",
+          "What do you call a fake noodle? An impasta!",
+          "What's orange and sounds like a parrot? A carrot!",
+          "Why don't eggs tell jokes? They might crack up!",
+          "Why did the bicycle fall over? It was two-tired!",
+          "What do you call a bear with no teeth? A gummy bear!",
+          "What do you call fake spaghetti? An impasta!",
+          "Why did the tomato turn red? Because it saw the salad dressing!",
+          "Why don't skeletons fight each other? They don't have the guts!",
+          "How do you organize a space party? You planet!",
+          "What do you call a fake noodle? An impasta!",
+          "Why couldn't the bicycle find its way home? It lost its bearings!",
+          "Why did the golfer bring two pairs of pants? In case he got a hole in one!",
+          "Why did the scarecrow win an award? Because he was outstanding in his field!",
+          "What do you call a bear with no teeth? A gummy bear!",
+          "How does a penguin build its house? Igloos it together!",
+          "Why don't you ever see elephants hiding in trees? Because they're so good at it!",
+          "Why did the tomato turn red? Because it saw the salad dressing!",
+          "How do you make a tissue dance? You put a little boogie in it!",
+          "Why did the bicycle fall over? It was two-tired!",
+          "What do you get if you cross a snowman and a vampire? Frostbite!",
+          "What do you call a bear with no teeth? A gummy bear!",
+          "Why don't scientists trust atoms? Because they make up everything!",
+          "Why did the scarecrow win an award? Because he was outstanding in his field!",
+          "What's brown and sticky? A stick!",
+          "Why don't skeletons fight each other? They don't have the guts!",
+          "What did one hat say to the other hat? You stay here, I'll go on ahead!",
+          "How does a train eat? It goes chew, chew!",
+          "Why was the math book sad? Because it had too many problems!",
+          "What did the left eye say to the right eye? Between you and me, something smells!",
+          "What do you call a fake noodle? An impasta!",
+          "What's orange and sounds like a parrot? A carrot!",
+          "Why don't eggs tell jokes? They might crack up!",
+          "Why did the bicycle fall over? It was two-tired!",
+          "What do you call a bear with no teeth? A gummy bear!",
+          "What do you call fake spaghetti? An impasta!",
+          "Why did the tomato turn red? Because it saw the salad dressing!",
+          "Why don't skeletons fight each other? They don't have the guts!",
+          "How do you organize a space party? You planet!",
+          "What do you call a fake noodle? An impasta!",
+          "Why couldn't the bicycle find its way home? It lost its bearings!",
+          "Why did the golfer bring two pairs of pants? In case he got a hole in one!",
+          "Why did the scarecrow win an award? Because he was outstanding in his field!",
+          "What do you call a bear with no teeth? A gummy bear!",
+          "How does a penguin build its house? Igloos it together!",
+          "Why don't you ever see elephants hiding in trees? Because they're so good at it!",
+          "Why did the tomato turn red? Because it saw the salad dressing!",
+          "How do you make a tissue dance? You put a little boogie in it!",
+          "Why did the bicycle fall over? It was two-tired!",
+          "What do you get if you cross a snowman and a vampire? Frostbite!",
+          "What do you call a bear with no teeth? A gummy bear!",
+          "Why don't scientists trust atoms? Because they make up everything!",
+          "Why did the scarecrow win an award? Because he was outstanding in his field!",
+          "What's brown and sticky? A stick!",
+          "Why don't skeletons fight each other? They don't have the guts!",
+          "What did one hat say to the other hat? You stay here, I'll go on ahead!",
+          "How does a train eat? It goes chew, chew!"
+        ];
+
+        var jokeContainer = document.getElementById("jokeContainer");
+        var randomIndex = Math.floor(Math.random() * jokes.length);
+        jokeContainer.innerText = jokes[randomIndex];
+      }
+
+      function toggleDarkMode() {
+        var body = document.querySelector("body");
+        body.classList.toggle("dark-mode");
+      }
+    </script>
+
+    <script>
+      window.addEventListener("DOMContentLoaded", function() {
+        var container = document.querySelector(".container");
+        container.style.opacity = "1";
+        container.style.transform = "translateY(0)";
+        var button = document.querySelector("button");
+        button.style.opacity = "1";
+      });
+    </script>
+  </div>
+</body>
+</html>
