@@ -17,6 +17,7 @@
       animation: fadeIn 1s ease-in-out forwards;
       overflow: hidden;
     }
+    
 
     @keyframes fadeIn {
       0% {
@@ -190,27 +191,27 @@
 </head>
 <body>
   <div class="container">
-    <h1>comedy.eu.org - The Simple Joke Generator</h1>
-    <div class="joke" id="jokeContainer">
-      <!-- The generated joke will appear here -->
-    </div>
-    <button onclick="generateJoke()">Generate Joke</button>
-    <div class="submit-joke">
-      <a href="https://forms.gle/r84iJv9Fn772WuFF9" target="_blank">Submit Your Joke</a>
-    </div>
-    <div class="submit-joke">
-      <a href="https://haha-eu.github.io/language/language_selection.html" target="_blank">한국인 - 汉语 - Español</a>
-    </div>
-    <div class="switch-container">
-      <span class="switch-label">☀️</span>
-      <label class="switch">
-        <input type="checkbox" onclick="toggleDarkMode()">
-        <span class="slider"></span>
-      </label>
-      <span class="switch-label">🌙</span>
-    </div>
-    <div class="copyright">
-      &copy; 2023 comedy.eu.org - All rights reserved.
+<h1>comedy.eu.org - The Simple Joke Generator</h1>
+<div class="joke" id="jokeContainer">
+  <!-- The generated joke will appear here -->
+</div>
+<button onclick="generateJoke()">Generate Joke</button>
+<div class="submit-joke">
+  <a href="https://forms.gle/r84iJv9Fn772WuFF9" target="_blank">Submit Your Joke</a>
+  <a href="https://haha-eu.github.io/language/language_selection.html" target="_blank">| 한국인 - 汉语 - Español</a>
+</div>
+<div class="switch-container">
+  <span class="switch-label">☀️</span>
+  <label class="switch">
+    <input type="checkbox" onclick="toggleDarkMode()">
+    <span class="slider"></span>
+  </label>
+  <span class="switch-label">🌙</span>
+</div>
+<div class="copyright">
+  &copy; 2023 comedy.eu.org - All rights reserved.
+</div>
+
     </div>
 
     <script>
