@@ -28,15 +28,24 @@
       color: #333;
     }
 
+    .language-button-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
     .language-button {
-      margin-bottom: 10px;
       font-size: 16px;
       color: #fff;
       background-color: #4caf50;
       border: none;
-      padding: 10px 20px;
+      padding: 10px 15px; /* Adjust the padding to make the buttons less wide */
       border-radius: 5px;
       cursor: pointer;
+      text-decoration: none; /* Remove hyperlink underline */
+      display: inline-block;
+      max-width: 100%; /* Limit button width to the container */
+      box-sizing: border-box; /* Include padding in button width calculation */
     }
 
     .language-button:hover {
@@ -47,10 +56,12 @@
 <body>
   <div class="container">
     <h1>Select Your Language</h1>
-    <a href="URL1" class="language-button">한국인 (Korean)</a>
-    <a href="URL2" class="language-button">汉语 (Mandarin Chinese)</a>
-    <a href="URL3" class="language-button">Español (Spanish)</a>
-    <a href="URL4" class="language-button">English</a>
+    <div class="language-button-container">
+      <a href="URL1" class="language-button">한국인 (Korean)</a>
+      <a href="URL2" class="language-button">汉语 (Mandarin Chinese)</a>
+      <a href="URL3" class="language-button">Español (Spanish)</a>
+      <a href="URL4" class="language-button">English</a>
+    </div>
   </div>
 </body>
 </html>
